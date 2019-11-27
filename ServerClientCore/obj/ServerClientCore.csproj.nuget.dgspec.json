@@ -1,0 +1,121 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/ren/Desktop/ServerClientCore/ServerClientCore/ServerClientCore.csproj": {}
+  },
+  "projects": {
+    "/home/ren/Desktop/ServerClientCore/Client/Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ren/Desktop/ServerClientCore/Client/Client.csproj",
+        "projectName": "Client",
+        "projectPath": "/home/ren/Desktop/ServerClientCore/Client/Client.csproj",
+        "packagesPath": "/home/ren/.nuget/packages/",
+        "outputPath": "/home/ren/Desktop/ServerClientCore/Client/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ren/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.0.101/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ren/Desktop/ServerClientCore/ServerClientCore/ServerClientCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ren/Desktop/ServerClientCore/ServerClientCore/ServerClientCore.csproj",
+        "projectName": "ServerClientCore",
+        "projectPath": "/home/ren/Desktop/ServerClientCore/ServerClientCore/ServerClientCore.csproj",
+        "packagesPath": "/home/ren/.nuget/packages/",
+        "outputPath": "/home/ren/Desktop/ServerClientCore/ServerClientCore/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ren/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "/home/ren/Desktop/ServerClientCore/Client/Client.csproj": {
+                "projectPath": "/home/ren/Desktop/ServerClientCore/Client/Client.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.0.101/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

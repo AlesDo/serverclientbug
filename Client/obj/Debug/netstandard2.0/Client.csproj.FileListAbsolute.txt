@@ -1,0 +1,16 @@
+C:/Users/ren/Desktop/ServerClientCore/Client/bin/Debug/netstandard2.0/Client.deps.json
+C:/Users/ren/Desktop/ServerClientCore/Client/bin/Debug/netstandard2.0/Client.dll
+C:/Users/ren/Desktop/ServerClientCore/Client/bin/Debug/netstandard2.0/Client.pdb
+C:/Users/ren/Desktop/ServerClientCore/Client/obj/Debug/netstandard2.0/Client.csprojAssemblyReference.cache
+C:/Users/ren/Desktop/ServerClientCore/Client/obj/Debug/netstandard2.0/Client.AssemblyInfoInputs.cache
+C:/Users/ren/Desktop/ServerClientCore/Client/obj/Debug/netstandard2.0/Client.AssemblyInfo.cs
+C:/Users/ren/Desktop/ServerClientCore/Client/obj/Debug/netstandard2.0/Client.dll
+C:/Users/ren/Desktop/ServerClientCore/Client/obj/Debug/netstandard2.0/Client.pdb
+/home/ren/Desktop/ServerClientCore/Client/bin/Debug/netstandard2.0/Client.deps.json
+/home/ren/Desktop/ServerClientCore/Client/bin/Debug/netstandard2.0/Client.dll
+/home/ren/Desktop/ServerClientCore/Client/bin/Debug/netstandard2.0/Client.pdb
+/home/ren/Desktop/ServerClientCore/Client/obj/Debug/netstandard2.0/Client.csprojAssemblyReference.cache
+/home/ren/Desktop/ServerClientCore/Client/obj/Debug/netstandard2.0/Client.AssemblyInfoInputs.cache
+/home/ren/Desktop/ServerClientCore/Client/obj/Debug/netstandard2.0/Client.AssemblyInfo.cs
+/home/ren/Desktop/ServerClientCore/Client/obj/Debug/netstandard2.0/Client.dll
+/home/ren/Desktop/ServerClientCore/Client/obj/Debug/netstandard2.0/Client.pdb

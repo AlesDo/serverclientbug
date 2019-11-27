@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "ServerClientCore/1.0.0": {
+        "dependencies": {
+          "Client": "1.0.0"
+        },
+        "runtime": {
+          "ServerClientCore.dll": {}
+        }
+      },
+      "Client/1.0.0": {
+        "runtime": {
+          "Client.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ServerClientCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Client/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
