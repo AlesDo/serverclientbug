@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,19 +32,42 @@ namespace Client
 
       public async Task<byte[]> Recieve()
       {
+         int dataLength = await ReadDataLength();
          List<byte> data = new List<byte>();
-         int bufferSize = 1024;
+         int bufferSize = 10;
          byte[] buffer = new byte[bufferSize];
          int bytesRead = await Task.Factory.FromAsync(client.BeginReceive(buffer, 0, bufferSize, SocketFlags.None, null, null), client.EndReceive);
          while (bytesRead == bufferSize)
          {
             data.AddRange(buffer);
-            bytesRead = await Task.Factory.FromAsync(client.BeginReceive(buffer, 0, bufferSize, SocketFlags.None, null, null), client.EndReceive);
+            if (data.Count < dataLength)
+            {
+               bytesRead = await Task.Factory.FromAsync(client.BeginReceive(buffer, 0, bufferSize, SocketFlags.None, null, null), client.EndReceive);
+            }
+            else
+            {
+               bytesRead = 0;
+               break;
+            }
          }
-         Array.Resize(ref buffer, bytesRead);
-         data.AddRange(buffer);
+         if (bytesRead > 0)
+         {
+            Array.Resize(ref buffer, bytesRead);
+            data.AddRange(buffer);
+         }
 
          return data.ToArray();
+      }
+
+      public async Task<int> ReadDataLength()
+      {
+         byte[] dataLengthBytes = new byte[4];
+         int bytesRead = await Task.Factory.FromAsync(client.BeginReceive(dataLengthBytes, 0, 4, SocketFlags.None, null, null), client.EndReceive);
+         if (bytesRead < 4)
+         {
+            throw new Exception("Could not determine data length received less than 4 bytes of data");
+         }
+         return BitConverter.ToInt32(dataLengthBytes, 0);
       }
 
       #region IDisposable Support
@@ -55,6 +79,7 @@ namespace Client
          {
             if (disposing)
             {
+               client.Close();
                client.Dispose();
             }
             disposedValue = true;
@@ -72,6 +97,9 @@ namespace Client
 
    public class ClientSockets
    {
+      private const int maxOpenConnections = 10;
+      private int openConnections = 0;
+
       public ClientSockets()
       {
 
@@ -79,13 +107,36 @@ namespace Client
 
       public async Task<byte[]> CallServer(byte[] input, string hostname, int port)
       {
-         using (TcpConnection tcpConnection = new TcpConnection())
+         while (openConnections > maxOpenConnections)
          {
-            await tcpConnection.Connect(hostname, port);
-            await tcpConnection.Send(input);
-            byte[] result = await tcpConnection.Recieve();
-            Console.WriteLine(string.Join(", ", result));
-            return result;
+            await Task.Delay(100);
+         }
+         Task<byte[]> serverTask = ExecuteServerCall(input, hostname, port);
+         return await serverTask;
+      }
+
+      private async Task<byte[]> ExecuteServerCall(byte[] input, string hostname, int port)
+      {
+         try
+         {
+            Interlocked.Increment(ref openConnections);
+            Console.WriteLine(openConnections);
+            using (TcpConnection tcpConnection = new TcpConnection())
+            {
+               await tcpConnection.Connect(hostname, port);
+               await tcpConnection.Send(input);
+               byte[] result = await tcpConnection.Recieve();
+               //Console.WriteLine(string.Join(", ", result));
+               Interlocked.Decrement(ref openConnections);
+               Console.WriteLine(openConnections);
+               return result;
+            }
+         }
+         catch
+         {
+            Interlocked.Decrement(ref openConnections);
+            Console.WriteLine(openConnections);
+            throw;
          }
       }
    }

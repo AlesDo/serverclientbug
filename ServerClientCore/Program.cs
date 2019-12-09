@@ -1,4 +1,5 @@
-﻿using Client;
+﻿using Bogus;
+using Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,15 @@ namespace ServerClient
          ClientSockets client = new ClientSockets();
          var Hostname = "127.0.0.1";
          var Port = 2055;
+         Faker faker = new Faker();
          Enumerable.Range(0, 5000).ToList().ForEach(f =>
          {
-            tasks.Add(client.CallServer(new List<byte>() { 3, 0, 0, 0, 1, 2, 3 }.ToArray(), Hostname, Port));
+            int dataLength = faker.Random.Int(1, 10);
+            byte[] data = faker.Random.Bytes(dataLength);
+            List<byte> dataWithLength = new List<byte>();
+            dataWithLength.AddRange(BitConverter.GetBytes(dataLength));
+            dataWithLength.AddRange(data);
+            tasks.Add(client.CallServer(dataWithLength.ToArray(), Hostname, Port));
          });
          tasks.ForEach(f => f.Wait());
          Console.WriteLine("DONE");
