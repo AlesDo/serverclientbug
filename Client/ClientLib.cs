@@ -97,7 +97,7 @@ namespace Client
 
    public class ClientSockets
    {
-      private const int maxOpenConnections = 10;
+      private const int maxOpenConnections = 100;
       private int openConnections = 0;
 
       public ClientSockets()
