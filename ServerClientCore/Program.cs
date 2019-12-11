@@ -19,7 +19,7 @@ namespace ServerClient
          Faker faker = new Faker();
          Enumerable.Range(0, 5000).ToList().ForEach(f =>
          {
-            int dataLength = faker.Random.Int(1, 2048);
+            int dataLength = faker.Random.Int(1, 1024 * 1024);
             byte[] data = faker.Random.Bytes(dataLength);
             List<byte> dataWithLength = new List<byte>();
             dataWithLength.AddRange(BitConverter.GetBytes(dataLength));

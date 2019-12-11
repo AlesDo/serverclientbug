@@ -52,13 +52,13 @@ namespace Server
       private async void ProcessConnection(Socket handler)
       {
          Interlocked.Increment(ref numberOfConnections);
-         Console.WriteLine(numberOfConnections);
+         // Console.WriteLine(numberOfConnections);
          using (handler)
          {
             byte[] receivedData = await Recieve(handler);
             Random random = new Random();
             await Task.Delay(random.Next(100, 1000));
-            //Console.WriteLine(string.Join(", ", receivedData));
+            // Console.WriteLine(string.Join(", ", receivedData));
 
             List<byte> responseData = new List<byte>();
             responseData.AddRange(BitConverter.GetBytes(receivedData.Length));
@@ -68,7 +68,7 @@ namespace Server
             handler.Close();
          }
          Interlocked.Decrement(ref numberOfConnections);
-         Console.WriteLine(numberOfConnections);
+         // Console.WriteLine(numberOfConnections);
       }
 
       private Task<int> Send(Socket client, byte[] data)
@@ -80,7 +80,7 @@ namespace Server
       {
          int dataLength = await ReadDataLength(client);
          List<byte> data = new List<byte>();
-         int bufferSize = 10;
+         int bufferSize = 1024;
          byte[] buffer = new byte[bufferSize];
          int bytesRead = await Task.Factory.FromAsync(client.BeginReceive(buffer, 0, bufferSize, SocketFlags.None, null, null), client.EndReceive);
          while (bytesRead == bufferSize)
